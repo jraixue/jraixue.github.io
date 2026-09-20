@@ -372,7 +372,9 @@ function renderCountdowns(countdowns) {
 function renderNotices(notices) {
   const ordered = [...notices].sort((a, b) => {
     if (Boolean(b.important) !== Boolean(a.important)) return Number(b.important) - Number(a.important);
-    return parseLocalDate(a.date).getTime() - parseLocalDate(b.date).getTime();
+    const aDate = a.date ? parseLocalDate(a.date).getTime() : 0;
+    const bDate = b.date ? parseLocalDate(b.date).getTime() : 0;
+    return aDate - bDate;
   });
   const items = ordered.slice(0, displayLimits.notices).map((notice, index) => {
     const item = createElement("article", `notice-item ${notice.level}`);
