@@ -2,7 +2,7 @@ const refreshIntervalMs = 30_000;
 const headlineIntervalMs = 6_500;
 const themeStorageKey = "jin-class-board-theme";
 const themes = new Set(["jade", "macaron", "cyber"]);
-const displayLimits = Object.freeze({ schedule: 7, homework: 4, countdowns: 6, notices: 2 });
+const displayLimits = Object.freeze({ schedule: 15, homework: 4, countdowns: 6, notices: 4 });
 
 // A small read-only snapshot keeps the public page useful if a browser, CDN, or
 // school network temporarily blocks JSON requests. The JSON file remains the
@@ -268,12 +268,18 @@ function replaceChildren(container, children, emptyText) {
 }
 
 function renderSchedule(schedule, { activity = false } = {}) {
-  const visibleSchedule = activity ? schedule : schedule.slice(0, displayLimits.schedule);
+  const now = minutesSinceMidnight();
+  const visibleSchedule = activity
+    ? schedule
+    : schedule.filter((lesson) => {
+        const range = parseTimeRange(lesson.time);
+        return !range || range.end > now;
+      }).slice(0, displayLimits.schedule);
   elements.schedulePanel?.classList.toggle("activity-panel", activity);
   elements.schedulePanel?.querySelector("#schedule-title")?.replaceChildren(document.createTextNode(activity ? "入学教育安排" : "今日课表"));
-  elements.lessonCount.textContent = schedule.length > visibleSchedule.length
-    ? `${visibleSchedule.length}/${schedule.length} 节`
-    : `${schedule.length} 项安排`;
+  elements.lessonCount.textContent = activity
+    ? `${visibleSchedule.length} 项安排`
+    : `${visibleSchedule.length} 节待上`;
   const items = visibleSchedule.map((lesson, index) => {
     const row = createElement("div", "schedule-item");
     const range = parseTimeRange(lesson.time);
@@ -286,8 +292,8 @@ function renderSchedule(schedule, { activity = false } = {}) {
     row.append(createElement("time", "schedule-time", lesson.time));
     row.append(createElement("span", "subject-pill", lesson.subject));
     const detail = createElement("div", "schedule-detail");
-    detail.append(createElement("strong", "", lesson.topic));
-    detail.append(createElement("span", "", lesson.room));
+    const title = lesson.topic && lesson.topic !== "按周四课表执行" ? lesson.topic : lesson.subject;
+    detail.append(createElement("strong", "", title));
     row.append(detail);
     return row;
   });
@@ -365,22 +371,6 @@ function renderCountdowns(countdowns) {
 
 function renderNotices(notices) {
   const ordered = [...notices].sort((a, b) => Number(b.level === "important") - Number(a.level === "important"));
-  const seatMapButton = createElement("button", "notice-item seat-map-notice");
-  seatMapButton.type = "button";
-  seatMapButton.dataset.openSeatMap = "true";
-  seatMapButton.dataset.seatMapSrc = "./class12-seat-map.png";
-  seatMapButton.dataset.seatMapTitle = "高一（12）班座位表";
-  seatMapButton.append(createElement("span", "notice-label", "班级资料"));
-  seatMapButton.append(createElement("strong", "", "高一（12）班座位表"));
-  seatMapButton.append(createElement("p", "", "点击查看大图，可滚轮放大缩小座位布局。"));
-  const hallSeatButton = createElement("button", "notice-item seat-map-notice");
-  hallSeatButton.type = "button";
-  hallSeatButton.dataset.openSeatMap = "true";
-  hallSeatButton.dataset.seatMapSrc = "./assembly-hall-seating.jpg";
-  hallSeatButton.dataset.seatMapTitle = "四会堂座位位置";
-  hallSeatButton.append(createElement("span", "notice-label", "入学教育安排"));
-  hallSeatButton.append(createElement("strong", "", "四会堂座位位置"));
-  hallSeatButton.append(createElement("p", "", "点击查看高一12班在四会堂的分组座位分布图。"));
   const items = ordered.slice(0, displayLimits.notices).map((notice, index) => {
     const item = createElement("article", `notice-item ${notice.level}`);
     item.style.animationDelay = `${index * 60}ms`;
@@ -389,7 +379,7 @@ function renderNotices(notices) {
     item.append(createElement("p", "", notice.detail));
     return item;
   });
-  replaceChildren(elements.noticeList, [seatMapButton, hallSeatButton, ...items], "目前没有新的班主任通知");
+  replaceChildren(elements.noticeList, items, "目前没有新的班主任通知");
 }
 
 function formatUpdatedAt(isoText) {
