@@ -434,7 +434,7 @@ async function refreshBoard() {
       }
     };
     if (window.location.hostname === "jraixue.github.io") {
-      payload = await loadJson("./class-board.json");
+      payload = await loadJson("./class-board.json?v=20260920-homework");
       renderBoard(payload);
     } else {
       try {
@@ -442,7 +442,7 @@ async function refreshBoard() {
         if (!payload || !payload.board) throw new Error("班级数据结构不正确");
         renderBoard(payload.board);
       } catch {
-        payload = await loadJson("./class-board.json");
+        payload = await loadJson("./class-board.json?v=20260920-homework");
         renderBoard(payload);
       }
     }
