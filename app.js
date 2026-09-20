@@ -2,7 +2,7 @@ const refreshIntervalMs = 30_000;
 const headlineIntervalMs = 6_500;
 const themeStorageKey = "jin-class-board-theme";
 const themes = new Set(["jade", "macaron", "cyber"]);
-const displayLimits = Object.freeze({ schedule: 15, homework: 4, countdowns: 6, notices: 4 });
+const displayLimits = Object.freeze({ schedule: 15, homework: 5, countdowns: 6, notices: 4 });
 
 // A small read-only snapshot keeps the public page useful if a browser, CDN, or
 // school network temporarily blocks JSON requests. The JSON file remains the
@@ -370,7 +370,10 @@ function renderCountdowns(countdowns) {
 }
 
 function renderNotices(notices) {
-  const ordered = [...notices].sort((a, b) => Number(b.level === "important") - Number(a.level === "important"));
+  const ordered = [...notices].sort((a, b) => {
+    if (Boolean(b.important) !== Boolean(a.important)) return Number(b.important) - Number(a.important);
+    return parseLocalDate(a.date).getTime() - parseLocalDate(b.date).getTime();
+  });
   const items = ordered.slice(0, displayLimits.notices).map((notice, index) => {
     const item = createElement("article", `notice-item ${notice.level}`);
     item.style.animationDelay = `${index * 60}ms`;
