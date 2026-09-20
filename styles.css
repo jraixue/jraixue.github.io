@@ -13,7 +13,7 @@
     radial-gradient(circle at 10% 4%, rgba(168, 224, 203, 0.64), transparent 31%),
     radial-gradient(circle at 92% 22%, rgba(175, 219, 238, 0.52), transparent 30%),
     linear-gradient(145deg, #e4f4ec 0%, #eef7f4 47%, #e6f1f5 100%);
-  --hero-image: url("./shared/workbench-hero-v2.png");
+  --hero-image: url("./workbench-hero-v2.png");
   --hero-overlay: linear-gradient(100deg, rgba(221, 244, 235, 0.98) 0%, rgba(213, 240, 231, 0.83) 45%, rgba(229, 244, 247, 0.24) 76%, rgba(255, 255, 255, 0.08) 100%);
   --highlight: #eeaa63;
   --danger: #d95f70;
@@ -35,7 +35,7 @@ html[data-theme="macaron"] {
     radial-gradient(circle at 12% 7%, rgba(158, 214, 244, 0.72), transparent 30%),
     radial-gradient(circle at 88% 15%, rgba(199, 184, 241, 0.62), transparent 34%),
     linear-gradient(145deg, #e6f4fc 0%, #f1edfb 50%, #f5eefa 100%);
-  --hero-image: url("./shared/workbench-hero-macaron-v1.png");
+  --hero-image: url("./workbench-hero-macaron-v1.png");
   --hero-overlay: linear-gradient(100deg, rgba(225, 243, 253, 0.98) 0%, rgba(231, 231, 249, 0.85) 46%, rgba(242, 225, 249, 0.22) 77%, rgba(255, 255, 255, 0.06) 100%);
   --highlight: #db8fab;
   --success: #639e91;
@@ -56,7 +56,7 @@ html[data-theme="cyber"] {
     radial-gradient(circle at 12% 10%, rgba(45, 98, 143, 0.42), transparent 28%),
     radial-gradient(circle at 86% 14%, rgba(109, 52, 143, 0.4), transparent 34%),
     linear-gradient(145deg, #070c19 0%, #0f1429 47%, #170d24 100%);
-  --hero-image: url("./shared/workbench-hero-cyber-v1.png");
+  --hero-image: url("./workbench-hero-cyber-v1.png");
   --hero-overlay: linear-gradient(100deg, rgba(8, 16, 34, 0.96) 0%, rgba(16, 23, 49, 0.84) 46%, rgba(33, 18, 51, 0.28) 77%, rgba(7, 12, 29, 0.14) 100%);
   --highlight: #ff78b2;
   --danger: #ff7992;

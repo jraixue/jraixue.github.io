@@ -144,7 +144,7 @@ function initializeSeatMap() {
     elements.seatMapModal.setAttribute("aria-hidden", String(!open));
     document.body.classList.toggle("seat-map-open", open);
     if (open) {
-      const source = sourceButton?.dataset.seatMapSrc || "./shared/class12-seat-map.png";
+      const source = sourceButton?.dataset.seatMapSrc || "./class12-seat-map.png";
       const title = sourceButton?.dataset.seatMapTitle || "高一（12）班座位表";
       elements.seatMapImage.src = source;
       elements.seatMapImage.alt = title;
@@ -335,7 +335,7 @@ function renderNotices(notices) {
   const seatMapButton = createElement("button", "notice-item seat-map-notice");
   seatMapButton.type = "button";
   seatMapButton.dataset.openSeatMap = "true";
-  seatMapButton.dataset.seatMapSrc = "./shared/class12-seat-map.png";
+  seatMapButton.dataset.seatMapSrc = "./class12-seat-map.png";
   seatMapButton.dataset.seatMapTitle = "高一（12）班座位表";
   seatMapButton.append(createElement("span", "notice-label", "班级资料"));
   seatMapButton.append(createElement("strong", "", "高一（12）班座位表"));
@@ -343,7 +343,7 @@ function renderNotices(notices) {
   const hallSeatButton = createElement("button", "notice-item seat-map-notice");
   hallSeatButton.type = "button";
   hallSeatButton.dataset.openSeatMap = "true";
-  hallSeatButton.dataset.seatMapSrc = "./shared/assembly-hall-seating.jpg";
+  hallSeatButton.dataset.seatMapSrc = "./assembly-hall-seating.jpg";
   hallSeatButton.dataset.seatMapTitle = "四会堂座位位置";
   hallSeatButton.append(createElement("span", "notice-label", "入学教育安排"));
   hallSeatButton.append(createElement("strong", "", "四会堂座位位置"));
@@ -403,7 +403,7 @@ async function refreshBoard() {
       if (!payload || !payload.board) throw new Error("班级数据结构不正确");
       renderBoard(payload.board);
     } catch {
-      const response = await fetch("./data/class-board.json", { cache: "no-cache" });
+      const response = await fetch("./class-board.json", { cache: "no-cache" });
       if (!response.ok) throw new Error(`静态数据 HTTP ${response.status}`);
       payload = await response.json();
       renderBoard(payload);
