@@ -1,2 +1,142 @@
-test
-这是金老师的个人页面
+<!doctype html>
+<html lang="zh-CN" data-theme="jade">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="高一（12）班今日课表、作业完成、倒计时和班主任通知看板" />
+    <title>高一（12）班 · 班级看板</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-atmosphere" aria-hidden="true"></div>
+    <main class="board-shell">
+      <header class="hero compact-hero" aria-label="班级信息滑动栏">
+        <div class="brand" aria-label="金师智教台班级端">
+          <span class="brand-mark">金</span>
+          <span><strong>金师班级看板</strong><small>CLASSROOM BOARD</small></span>
+        </div>
+
+        <div class="headline-slider" id="headline-slider" tabindex="0" aria-label="左右滑动切换班级名称、今日寄语和隐私说明">
+          <div class="headline-track" id="headline-track">
+            <section class="headline-slide class-slide">
+              <span class="slide-kicker">TODAY · 班级公共信息</span>
+              <h1 id="class-title">高一（12）班 · 贯通班</h1>
+              <small id="date-label">正在读取今日安排…</small>
+            </section>
+            <section class="headline-slide message-slide">
+              <span class="slide-kicker">今日寄语</span>
+              <blockquote id="daily-message">把每一次准备做扎实，让今天比昨天更接近理想。</blockquote>
+            </section>
+            <section class="headline-slide privacy-slide">
+              <span class="slide-kicker">班级公共信息</span>
+              <strong>今日课表 · 作业完成 · 重要提醒</strong>
+              <small>仅展示班级公共信息；座位表单独提供查看</small>
+            </section>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <div class="theme-switcher" role="group" aria-label="切换页面主题">
+            <button type="button" data-theme-choice="jade" aria-label="翡翠晨雾主题" aria-pressed="true"><span>翡翠</span></button>
+            <button type="button" data-theme-choice="macaron" aria-label="蓝紫马卡龙主题" aria-pressed="false"><span>蓝紫</span></button>
+            <button type="button" data-theme-choice="cyber" aria-label="赛博夜航主题" aria-pressed="false"><span>夜航</span></button>
+          </div>
+          <span class="sync-state" id="sync-state" role="status" aria-live="polite">正在同步</span>
+        </div>
+      </header>
+
+      <section class="board-grid" aria-label="班级今日信息">
+        <article class="glass-panel schedule-panel" aria-labelledby="schedule-title">
+          <header class="panel-heading">
+            <div>
+              <span class="panel-number">01</span>
+              <div><p>DAILY SCHEDULE</p><h2 id="schedule-title">今日课表</h2></div>
+            </div>
+            <span class="panel-chip" id="lesson-count">0 节安排</span>
+          </header>
+          <div class="schedule-list" id="schedule-list" aria-live="polite">
+            <p class="empty-state">正在加载今日课表…</p>
+          </div>
+        </article>
+
+        <article class="glass-panel homework-panel" aria-labelledby="homework-title">
+          <header class="panel-heading">
+            <div>
+              <span class="panel-number">02</span>
+              <div><p>HOMEWORK PULSE</p><h2 id="homework-title">作业完成</h2></div>
+            </div>
+            <span class="panel-chip">班级整体</span>
+          </header>
+
+          <div class="completion-orbit" aria-label="作业总体完成率">
+            <div class="orbit-ring" id="overall-ring">
+              <div><strong id="overall-percent">—</strong><span>总体完成率</span></div>
+            </div>
+            <div class="completion-summary">
+              <strong id="completion-summary">等待统计</strong>
+              <span>仅显示已交人数，不公开未交名单</span>
+            </div>
+          </div>
+
+          <div class="homework-list" id="homework-list" aria-live="polite">
+            <p class="empty-state">正在加载作业情况…</p>
+          </div>
+        </article>
+
+        <article class="glass-panel class-panel" aria-labelledby="class-info-title">
+          <header class="panel-heading">
+            <div>
+              <span class="panel-number">03</span>
+              <div><p>CLASS SIGNAL</p><h2 id="class-info-title">重要日程与通知</h2></div>
+            </div>
+            <span class="panel-chip">班主任发布</span>
+          </header>
+
+          <section class="countdown-section" aria-labelledby="countdown-title">
+            <h3 id="countdown-title">近期倒计时</h3>
+            <div class="countdown-grid" id="countdown-list" aria-live="polite">
+              <p class="empty-state">正在加载近期日程…</p>
+            </div>
+          </section>
+
+          <section class="notice-section" aria-labelledby="notice-title">
+            <div class="section-heading"><h3 id="notice-title">班主任通知</h3><span>请及时查看</span></div>
+            <div class="notice-list" id="notice-list" aria-live="polite">
+              <p class="empty-state">正在加载通知…</p>
+            </div>
+          </section>
+        </article>
+      </section>
+
+      <footer class="board-footer">
+        <span>班级数据每30秒自动同步</span>
+        <span id="updated-at">等待首次更新</span>
+        <span>如有疑问，请以班主任最新通知为准</span>
+      </footer>
+    </main>
+
+    <div class="seat-map-modal" id="seat-map-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="seat-map-title">
+      <div class="seat-map-backdrop" data-seat-map-close></div>
+      <section class="seat-map-dialog">
+        <header class="seat-map-toolbar">
+          <div>
+            <span class="panel-number">座</span>
+            <div><h2 id="seat-map-title">高一（12）班座位表</h2><p>可滚轮缩放，拖动查看</p></div>
+          </div>
+          <div class="seat-map-controls">
+            <button type="button" data-seat-map-zoom="out" aria-label="缩小">−</button>
+            <button type="button" data-seat-map-zoom="reset">100%</button>
+            <button type="button" data-seat-map-zoom="in" aria-label="放大">＋</button>
+            <button type="button" data-seat-map-close class="seat-map-close" aria-label="关闭座位表">关闭</button>
+          </div>
+        </header>
+        <div class="seat-map-stage" id="seat-map-stage" tabindex="0">
+          <img id="seat-map-image" src="./shared/class12-seat-map.png" alt="高一（12）班七行七列座位表，方向在上" draggable="false" />
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
