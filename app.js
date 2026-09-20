@@ -4,6 +4,39 @@ const themeStorageKey = "jin-class-board-theme";
 const themes = new Set(["jade", "macaron", "cyber"]);
 const displayLimits = Object.freeze({ schedule: 7, homework: 4, countdowns: 6, notices: 2 });
 
+// A small read-only snapshot keeps the public page useful if a browser, CDN, or
+// school network temporarily blocks JSON requests. The JSON file remains the
+// normal source for future updates.
+const embeddedBoard = {
+  className: "高一（12）班 · 贯通班",
+  dateLabel: "2026年8月17日 星期一",
+  dailyMessage: "把每一次准备做扎实，把今天能做的认真做好。",
+  updatedAt: "2026-08-17T02:59:04.083Z",
+  schedule: [
+    { id: "schedule-1", time: "08:00–08:45", subject: "班级事务", topic: "入学材料核对与班级安排", room: "高一（12）班教室" },
+    { id: "schedule-2", time: "09:00–09:45", subject: "物理", topic: "初高中衔接：运动的描述", room: "高一（12）班教室" },
+    { id: "schedule-3", time: "10:05–10:50", subject: "数学", topic: "学习方法与知识衔接", room: "高一（12）班教室" },
+    { id: "schedule-4", time: "14:00–14:45", subject: "主题班会", topic: "入学教育准备与安全提醒", room: "高一（12）班教室" }
+  ],
+  homework: [
+    { id: "homework-1", title: "学生情况登记表", completed: 0, total: 49, deadline: "8月19日" },
+    { id: "homework-2", title: "军训回执", completed: 0, total: 49, deadline: "8月19日" },
+    { id: "homework-3", title: "肺结核筛查问卷", completed: 0, total: 49, deadline: "8月19日" }
+  ],
+  countdowns: [
+    { id: "countdown-1", title: "入学教育第一天", date: "2026-08-19" },
+    { id: "countdown-2", title: "军训", date: "2026-08-23" },
+    { id: "countdown-3", title: "正式开学", date: "2026-09-01" },
+    { id: "countdown-4", title: "第一次物理小测（示例）", date: "2026-09-11" },
+    { id: "countdown-5", title: "返校", date: "2026-08-31" },
+    { id: "countdown-6", title: "开学典礼", date: "2026-08-31" }
+  ],
+  notices: [
+    { id: "notice-1", title: "明日入学教育物品提醒（示例）", detail: "请以金老师最终通知为准；到校前检查学习用品和相关材料。", level: "important" },
+    { id: "notice-2", title: "班级网页使用说明", detail: "本页只展示班级公共信息和整体完成情况；座位表仅用于班级现场安排，不公布个人成绩。", level: "normal" }
+  ]
+};
+
 const elements = {
   classTitle: document.querySelector("#class-title"),
   dateLabel: document.querySelector("#date-label"),
@@ -411,8 +444,14 @@ async function refreshBoard() {
     hasLoadedBoard = true;
     elements.syncState.textContent = "已同步";
   } catch {
+    if (!hasLoadedBoard) {
+      renderBoard(embeddedBoard);
+      hasLoadedBoard = true;
+      elements.syncState.textContent = "已同步（内置快照）";
+      return;
+    }
     elements.syncState.classList.add("error");
-    elements.syncState.textContent = hasLoadedBoard ? "刷新失败" : "暂时离线";
+    elements.syncState.textContent = "刷新失败";
   }
 }
 
