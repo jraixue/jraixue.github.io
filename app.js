@@ -429,17 +429,29 @@ async function refreshBoard() {
   elements.syncState.textContent = hasLoadedBoard ? "正在刷新" : "正在同步";
   try {
     let payload;
-    try {
-      const response = await fetch("/api/board", { cache: "no-store", headers: { Accept: "application/json" } });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      payload = await response.json();
-      if (!payload || !payload.board) throw new Error("班级数据结构不正确");
-      renderBoard(payload.board);
-    } catch {
-      const response = await fetch("./class-board.json", { cache: "no-cache" });
-      if (!response.ok) throw new Error(`静态数据 HTTP ${response.status}`);
-      payload = await response.json();
+    const loadJson = async (url, timeoutMs = 2500) => {
+      const controller = new AbortController();
+      const timer = window.setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        const response = await fetch(url, { cache: "no-cache", headers: { Accept: "application/json" }, signal: controller.signal });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      } finally {
+        window.clearTimeout(timer);
+      }
+    };
+    if (window.location.hostname === "jraixue.github.io") {
+      payload = await loadJson("./class-board.json");
       renderBoard(payload);
+    } else {
+      try {
+        payload = await loadJson("/api/board");
+        if (!payload || !payload.board) throw new Error("班级数据结构不正确");
+        renderBoard(payload.board);
+      } catch {
+        payload = await loadJson("./class-board.json");
+        renderBoard(payload);
+      }
     }
     hasLoadedBoard = true;
     elements.syncState.textContent = "已同步";
