@@ -11,7 +11,7 @@ const embeddedBoard = {
   className: "高一（12）班 · 贯通班",
   dateLabel: "2026年9月22日 星期二",
   dailyMessage: "把每一次准备做扎实，把今天能做的认真做好。",
-  updatedAt: "2026-08-17T02:59:04.083Z",
+  updatedAt: "2026-09-22T03:18:06Z",
   schedule: [
     { id: "schedule-0", time: "07:35–07:55", subject: "早读", topic: "语文早读" },
     { id: "schedule-1", time: "08:00–08:40", subject: "第1节", topic: "数学" },
