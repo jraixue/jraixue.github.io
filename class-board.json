@@ -1,69 +1,108 @@
 {
   "className": "高一（12）班 · 贯通班",
-  "dateLabel": "2026年9月20日 星期日",
-  "dailyMessage": "按周四课表稳步推进，愿今天的每一项准备都清清楚楚。",
-  "updatedAt": "2026-09-20T07:30:00.000Z",
+  "dateLabel": "2026年9月22日 星期二",
+  "dailyMessage": "把每一次准备做扎实，让今天比昨天更接近理想。",
+  "updatedAt": "2026-08-17T02:59:04.083Z",
   "schedule": [
-    {
-      "id": "schedule-1",
-      "time": "07:35–07:55",
-      "subject": "语文早读",
-      "topic": "按周四课表执行",
-      "room": "高一（12）班教室"
-    },
-    {
-      "id": "schedule-2",
-      "time": "08:00–08:40",
-      "subject": "英语",
-      "topic": "按周四课表执行",
-      "room": "高一（12）班教室"
-    },
-    {
-      "id": "schedule-3",
-      "time": "08:55–09:35",
-      "subject": "物理",
-      "topic": "按周四课表执行",
-      "room": "高一（12）班教室"
-    },
-    {
-      "id": "schedule-4",
-      "time": "09:40–09:45",
-      "subject": "眼保健操",
-      "topic": "全班统一安排",
-      "room": "高一（12）班教室"
-    },
-    { "id": "schedule-5", "time": "09:50–10:30", "subject": "数学", "topic": "按周四课表执行", "room": "高一（12）班教室" },
-    { "id": "schedule-6", "time": "10:30–11:00", "subject": "课间操", "topic": "按学校统一安排", "room": "操场" },
-    { "id": "schedule-7", "time": "11:00–11:40", "subject": "语文", "topic": "按周四课表执行", "room": "高一（12）班教室" },
-    { "id": "schedule-8", "time": "11:50–12:30", "subject": "体锻", "topic": "按学校统一安排", "room": "操场" },
-    { "id": "schedule-9", "time": "12:30–13:50", "subject": "午间安排", "topic": "午餐、答疑、自主活动", "room": "食堂、班级教室" },
-    { "id": "schedule-10", "time": "13:50–14:30", "subject": "地理", "topic": "按周四课表执行", "room": "高一（12）班教室" },
-    { "id": "schedule-11", "time": "14:40–14:45", "subject": "眼保健操", "topic": "全班统一安排", "room": "高一（12）班教室" },
-    { "id": "schedule-12", "time": "14:45–15:25", "subject": "历史", "topic": "按周四课表执行", "room": "高一（12）班教室" },
-    { "id": "schedule-13", "time": "15:40–16:20", "subject": "政治", "topic": "按周四课表执行", "room": "高一（12）班教室" },
-    { "id": "schedule-14", "time": "16:30–17:10", "subject": "学科兴趣探索课", "topic": "今日放学时间：17:10", "room": "按班级通知" },
-    { "id": "schedule-15", "time": "18:30–20:30", "subject": "晚自习", "topic": "按学校统一安排", "room": "高一（12）班教室" }
+    { "id": "schedule-0", "time": "07:35–07:55", "subject": "早读", "topic": "语文早读" },
+    { "id": "schedule-1", "time": "08:00–08:40", "subject": "第1节", "topic": "数学" },
+    { "id": "schedule-2", "time": "08:55–09:35", "subject": "第2节", "topic": "英语" },
+    { "id": "schedule-break-1", "time": "09:40–09:45", "subject": "眼保健操", "topic": "眼保健操" },
+    { "id": "schedule-3", "time": "09:50–10:30", "subject": "第3节", "topic": "历史" },
+    { "id": "schedule-break-2", "time": "10:30–11:00", "subject": "课间操", "topic": "课间操" },
+    { "id": "schedule-4", "time": "11:00–11:40", "subject": "第4节", "topic": "语文" },
+    { "id": "schedule-5", "time": "11:50–12:30", "subject": "第5节", "topic": "语文" },
+    { "id": "schedule-noon", "time": "12:30–13:50", "subject": "午间", "topic": "午餐、答疑、自主活动" },
+    { "id": "schedule-6", "time": "13:50–14:30", "subject": "第6节", "topic": "化学" },
+    { "id": "schedule-break-3", "time": "14:40–14:45", "subject": "眼保健操", "topic": "眼保健操" },
+    { "id": "schedule-7", "time": "14:45–15:25", "subject": "第7节", "topic": "体育" },
+    { "id": "schedule-8", "time": "15:40–16:20", "subject": "第8节", "topic": "课后服务" },
+    { "id": "schedule-9", "time": "16:30–17:30", "subject": "第9节", "topic": "课后服务" },
+    { "id": "schedule-10", "time": "18:30–20:30", "subject": "第10节", "topic": "晚自习" }
   ],
   "homework": [
-    { "id": "hw-20260918", "title": "09月18日作业（学探诊§2.2的2-5；§2.3的2-5）", "completed": 45, "total": 49, "deadline": "09月19日 08:00" },
-    { "id": "hw-20260917", "title": "09月17日物理作业", "completed": 46, "total": 49, "deadline": "09月18日 08:00" },
-    { "id": "hw-20260915", "title": "09月15日物理作业", "completed": 48, "total": 49, "deadline": "09月16日 08:00" },
-    { "id": "hw-20260914", "title": "09月14日物理作业", "completed": 49, "total": 49, "deadline": "09月15日 08:00" },
-    { "id": "hw-20260911", "title": "09月11日物理作业", "completed": 49, "total": 49, "deadline": "09月14日 08:00" }
+    {
+      "id": "homework-1",
+      "title": "学生情况登记表",
+      "completed": 0,
+      "total": 49,
+      "deadline": "8月19日"
+    },
+    {
+      "id": "homework-2",
+      "title": "军训回执",
+      "completed": 0,
+      "total": 49,
+      "deadline": "8月19日"
+    },
+    {
+      "id": "homework-3",
+      "title": "肺结核筛查问卷",
+      "completed": 0,
+      "total": 49,
+      "deadline": "8月19日"
+    }
   ],
   "countdowns": [
-    { "id": "countdown-1", "title": "运动会", "date": "2026-09-24" }
+    {
+      "id": "countdown-1",
+      "title": "入学教育第一天",
+      "date": "2026-08-19"
+    },
+    {
+      "id": "countdown-2",
+      "title": "军训",
+      "date": "2026-08-23"
+    },
+    {
+      "id": "countdown-3",
+      "title": "正式开学",
+      "date": "2026-09-01"
+    },
+    {
+      "id": "countdown-4",
+      "title": "第一次物理小测（示例）",
+      "date": "2026-09-11"
+    },
+    {
+      "id": "countdown-5",
+      "title": "返校",
+      "date": "2026-08-31"
+    },
+    {
+      "id": "countdown-6",
+      "title": "开学典礼",
+      "date": "2026-08-31"
+    },
+    {
+      "id": "countdown-7",
+      "title": "运动会",
+      "date": "2026-09-24"
+    }
   ],
   "notices": [
-    { "id": "notice-1", "date": "2026-09-20", "title": "9月20日（周日）放学时间：17:10", "detail": "按周四课表执行；16:30–17:10 为学科兴趣探索课。", "level": "important" },
-    { "id": "notice-2", "date": "2026-09-21", "title": "9月21日（周一）安排", "detail": "综合分类课后约15:00放学；体锻课进行迎面接力赛预赛和决赛。", "level": "important" },
-    { "id": "notice-3", "date": "2026-09-22", "title": "9月22日（周二）讲座安排", "detail": "15:40–16:40 教学处讲座1；当天约14:40放学，地点按讲座分组通知。", "level": "normal" },
-    { "id": "notice-4", "date": "2026-09-23", "title": "9月23日（周三）阅读课与卫生安排", "detail": "16:30–17:10 语文阅读课；17:10–17:40 大扫除，我班卫生委员负责检查卫生；当天无晚自习。", "level": "important" },
     {
-      "id": "notice-5",
-      "date": "2026-09-20",
-      "title": "班级网页使用说明",
-      "detail": "本页只展示班级公共信息和整体完成情况；座位表仅用于班级现场安排，不公布个人成绩。",
+      "id": "notice-1",
+      "title": "9月21日（周一）放学时间：17:00",
+      "detail": "综合分类课结束后放学。",
+      "level": "important"
+    },
+    {
+      "id": "notice-2",
+      "title": "9月22日（周二）放学时间：16:40",
+      "detail": "教学处讲座 15:40—16:40，讲座结束后放学。",
+      "level": "important"
+    },
+    {
+      "id": "notice-3",
+      "title": "9月23日（周三）放学时间：17:10",
+      "detail": "16:30—17:10 语文阅读课；17:10—17:40 大扫除。",
+      "level": "important"
+    },
+    {
+      "id": "notice-4",
+      "title": "9月24日（周四）运动会",
+      "detail": "运动会当天安排以班主任最新通知为准。",
       "level": "normal"
     }
   ],
