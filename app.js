@@ -9,14 +9,25 @@ const displayLimits = Object.freeze({ schedule: 15, homework: 5, countdowns: 6, 
 // normal source for future updates.
 const embeddedBoard = {
   className: "高一（12）班 · 贯通班",
-  dateLabel: "2026年8月17日 星期一",
+  dateLabel: "2026年9月22日 星期二",
   dailyMessage: "把每一次准备做扎实，把今天能做的认真做好。",
   updatedAt: "2026-08-17T02:59:04.083Z",
   schedule: [
-    { id: "schedule-1", time: "08:00–08:45", subject: "班级事务", topic: "入学材料核对与班级安排", room: "高一（12）班教室" },
-    { id: "schedule-2", time: "09:00–09:45", subject: "物理", topic: "初高中衔接：运动的描述", room: "高一（12）班教室" },
-    { id: "schedule-3", time: "10:05–10:50", subject: "数学", topic: "学习方法与知识衔接", room: "高一（12）班教室" },
-    { id: "schedule-4", time: "14:00–14:45", subject: "主题班会", topic: "入学教育准备与安全提醒", room: "高一（12）班教室" }
+    { id: "schedule-0", time: "07:35–07:55", subject: "早读", topic: "语文早读" },
+    { id: "schedule-1", time: "08:00–08:40", subject: "第1节", topic: "数学" },
+    { id: "schedule-2", time: "08:55–09:35", subject: "第2节", topic: "英语" },
+    { id: "schedule-break-1", time: "09:40–09:45", subject: "眼保健操", topic: "眼保健操" },
+    { id: "schedule-3", time: "09:50–10:30", subject: "第3节", topic: "历史" },
+    { id: "schedule-break-2", time: "10:30–11:00", subject: "课间操", topic: "课间操" },
+    { id: "schedule-4", time: "11:00–11:40", subject: "第4节", topic: "语文" },
+    { id: "schedule-5", time: "11:50–12:30", subject: "第5节", topic: "语文" },
+    { id: "schedule-noon", time: "12:30–13:50", subject: "午间", topic: "午餐、答疑、自主活动" },
+    { id: "schedule-6", time: "13:50–14:30", subject: "第6节", topic: "化学" },
+    { id: "schedule-break-3", time: "14:40–14:45", subject: "眼保健操", topic: "眼保健操" },
+    { id: "schedule-7", time: "14:45–15:25", subject: "第7节", topic: "体育" },
+    { id: "schedule-8", time: "15:40–16:20", subject: "第8节", topic: "课后服务" },
+    { id: "schedule-9", time: "16:30–17:30", subject: "第9节", topic: "课后服务" },
+    { id: "schedule-10", time: "18:30–20:30", subject: "第10节", topic: "晚自习" }
   ],
   homework: [
     { id: "homework-1", title: "学生情况登记表", completed: 0, total: 49, deadline: "8月19日" },
@@ -29,11 +40,14 @@ const embeddedBoard = {
     { id: "countdown-3", title: "正式开学", date: "2026-09-01" },
     { id: "countdown-4", title: "第一次物理小测（示例）", date: "2026-09-11" },
     { id: "countdown-5", title: "返校", date: "2026-08-31" },
-    { id: "countdown-6", title: "开学典礼", date: "2026-08-31" }
+    { id: "countdown-6", title: "开学典礼", date: "2026-08-31" },
+    { id: "countdown-7", title: "运动会", date: "2026-09-24" }
   ],
   notices: [
-    { id: "notice-1", title: "明日入学教育物品提醒（示例）", detail: "请以金老师最终通知为准；到校前检查学习用品和相关材料。", level: "important" },
-    { id: "notice-2", title: "班级网页使用说明", detail: "本页只展示班级公共信息和整体完成情况；座位表仅用于班级现场安排，不公布个人成绩。", level: "normal" }
+    { id: "notice-1", title: "9月21日（周一）放学时间：17:00", detail: "综合分类课结束后放学。", level: "important" },
+    { id: "notice-2", title: "9月22日（周二）放学时间：16:40", detail: "教学处讲座 15:40—16:40，讲座结束后放学。", level: "important" },
+    { id: "notice-3", title: "9月23日（周三）放学时间：17:10", detail: "16:30—17:10 语文阅读课；17:10—17:40 大扫除。", level: "important" },
+    { id: "notice-4", title: "9月24日（周四）运动会", detail: "运动会当天安排以班主任最新通知为准。", level: "normal" }
   ]
 };
 
@@ -359,8 +373,8 @@ function renderCountdowns(countdowns) {
     const state = countdownLabel(countdown.date);
     const card = createElement("div", `countdown-card${state.value === "今日" ? " is-today" : ""}`);
     card.style.animationDelay = `${index * 55}ms`;
-    card.append(createElement("span", "", state.unit));
     card.append(createElement("strong", "", String(state.value)));
+    card.append(createElement("span", "", state.unit));
     const date = createElement("time", "", `${countdown.title} · ${formatDate(countdown.date)}`);
     date.dateTime = countdown.date;
     card.append(date);
@@ -436,7 +450,7 @@ async function refreshBoard() {
       }
     };
     if (window.location.hostname === "jraixue.github.io") {
-      payload = await loadJson("./class-board.json?v=20260920-homework");
+      payload = await loadJson("./class-board.json?v=20260920-homework2");
       renderBoard(payload);
     } else {
       try {
@@ -444,7 +458,7 @@ async function refreshBoard() {
         if (!payload || !payload.board) throw new Error("班级数据结构不正确");
         renderBoard(payload.board);
       } catch {
-        payload = await loadJson("./class-board.json?v=20260920-homework");
+        payload = await loadJson("./class-board.json?v=20260920-homework2");
         renderBoard(payload);
       }
     }
@@ -467,3 +481,69 @@ initializeHeadlineSlider();
 initializeSeatMap();
 refreshBoard();
 window.setInterval(refreshBoard, refreshIntervalMs);
+
+// Public demo login gate. It is deliberately client-only and must never be used for real student data.
+(function initializePublicDemoAuth() {
+  const auth = document.getElementById("public-auth");
+  const passwordGate = document.getElementById("public-password");
+  const studentDemo = document.getElementById("student-demo");
+  const board = document.querySelector(".board-shell");
+  const roleButtons = [...document.querySelectorAll("[data-auth-role]")];
+  const username = document.getElementById("public-auth-username");
+  const password = document.getElementById("public-auth-password");
+  const error = document.getElementById("public-auth-error");
+  const submit = document.getElementById("public-auth-submit");
+  const newPassword = document.getElementById("public-new-password");
+  const confirmPassword = document.getElementById("public-confirm-password");
+  const passwordError = document.getElementById("public-password-error");
+  const passwordSubmit = document.getElementById("public-password-submit");
+  if (!auth || !passwordGate || !studentDemo || !board || !username || !password || !error || !submit || !newPassword || !confirmPassword || !passwordError || !passwordSubmit) return;
+  let role = "student";
+  let loggedInRole = "student";
+  roleButtons.forEach((button) => button.addEventListener("click", () => {
+    role = button.dataset.authRole || "student";
+    roleButtons.forEach((item) => item.classList.toggle("active", item === button));
+    username.placeholder = role === "teacher" ? "金然" : "演示学生01";
+    submit.textContent = role === "teacher" ? "登录教师演示端" : "登录学生演示端";
+    error.textContent = "";
+  }));
+  submit.addEventListener("click", () => {
+    const expectedName = role === "teacher" ? "金然" : "演示学生01";
+    if (username.value.trim() !== expectedName || password.value !== "123456") {
+      error.textContent = `演示账号不匹配：${expectedName} / 初始密码 123456`;
+      return;
+    }
+    loggedInRole = role;
+    auth.hidden = true;
+    passwordGate.hidden = false;
+    newPassword.focus();
+  });
+  passwordSubmit.addEventListener("click", () => {
+    if (!/^(?=.*[A-Za-z])(?=.*\d).{6,}$/.test(newPassword.value)) {
+      passwordError.textContent = "新密码至少 6 位，并同时包含字母和数字。";
+      return;
+    }
+    if (newPassword.value !== confirmPassword.value) {
+      passwordError.textContent = "两次输入的新密码不一致。";
+      return;
+    }
+    passwordGate.hidden = true;
+    if (loggedInRole === "student") {
+      board.hidden = true;
+      studentDemo.hidden = false;
+      const welcome = document.getElementById("student-demo-welcome");
+      if (welcome) welcome.textContent = `欢迎，${username.value.trim()}。这里只展示当前账号本人的信息。`;
+    } else {
+      board.hidden = false;
+    }
+  });
+  document.querySelectorAll("[data-public-logout]").forEach((button) => button.addEventListener("click", () => {
+    studentDemo.hidden = true;
+    board.hidden = false;
+    auth.hidden = false;
+    username.value = "";
+    password.value = "";
+    newPassword.value = "";
+    confirmPassword.value = "";
+  }));
+})();
