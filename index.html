@@ -8,32 +8,9 @@
     <title>高一（12）班 · 班级看板</title>
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="stylesheet" href="./styles.css" />
-    <script src="./app.js?v=20260920-homework2" defer></script>
+    <script src="./app.js?v=20260926-public-board" defer></script>
   </head>
   <body>
-    <section class="public-auth" id="public-auth" aria-labelledby="public-auth-title">
-      <div class="public-auth-card">
-        <div class="public-auth-mark">金</div>
-        <span class="public-auth-kicker">JIN OS · PUBLIC DEMO</span>
-        <h1 id="public-auth-title">金师班级看板</h1>
-        <p>教师工作台与学生 / 家长演示入口</p>
-        <div class="public-auth-tabs"><button type="button" class="active" data-auth-role="student">学生 / 家长端</button><button type="button" data-auth-role="teacher">教师端</button></div>
-        <label>用户名<input id="public-auth-username" autocomplete="username" placeholder="演示学生01" /></label>
-        <label>密码<input id="public-auth-password" type="password" autocomplete="current-password" placeholder="初始密码：123456" /></label>
-        <p class="public-auth-error" id="public-auth-error" role="alert"></p>
-        <button type="button" class="public-auth-submit" id="public-auth-submit">登录演示端</button>
-        <small>当前为公开演示：请勿输入真实学生姓名、密码或成绩。</small>
-      </div>
-    </section>
-    <section class="public-password" id="public-password" hidden aria-labelledby="public-password-title">
-      <div class="public-auth-card"><div class="public-auth-mark">✓</div><span class="public-auth-kicker">FIRST LOGIN</span><h1 id="public-password-title">首次登录，请修改密码</h1><p>新密码至少 6 位，并同时包含字母和数字。</p><label>新密码<input id="public-new-password" type="password" placeholder="例如：Jin123456" /></label><label>确认新密码<input id="public-confirm-password" type="password" placeholder="再次输入新密码" /></label><p class="public-auth-error" id="public-password-error" role="alert"></p><button type="button" class="public-auth-submit" id="public-password-submit">保存并继续</button></div>
-    </section>
-    <section class="student-demo" id="student-demo" hidden>
-      <header><div><span class="public-auth-kicker">CLASS 12 · PERSONAL VIEW</span><h1>高一（12）班 · 学生 / 家长端</h1><p id="student-demo-welcome">这里只展示当前账号本人的信息。</p></div><button type="button" class="student-logout" data-public-logout>退出登录</button></header>
-      <div class="student-privacy"><b>⌾ 隐私隔离已开启</b><span>不会显示其他同学姓名、成绩或未交名单。</span></div>
-      <article class="student-demo-card"><div class="student-demo-heading"><div><span class="public-auth-kicker">PHYSICS · RECENT 5</span><h2>近五次物理作业</h2></div><span>演示数据</span></div><div class="student-demo-list"><div><time>9月18日</time><b>物理作业：学探诊§2.2 的 2—5；§2.3 的 2—5</b><em>已提交</em></div><div><time>9月17日</time><b>物理作业：运动的描述 · 练习1</b><em>已提交</em></div><div><time>9月16日</time><b>物理作业：质点与参考系 · 基础练习</b><em>已提交</em></div><div><time>9月15日</time><b>物理作业：位置、位移和路程</b><em class="pending">未布置</em></div><div><time>9月12日</time><b>物理作业：匀变速直线运动 · 课后巩固</b><em>已提交</em></div></div></article>
-      <article class="student-demo-card student-assessment"><span class="public-auth-kicker">ASSESSMENT INSIGHT</span><h2>近期考试分析</h2><strong>待教师发布</strong><p>后续将显示本人得分、班级准确排名、年级区间排名和知识点掌握情况。</p></article>
-    </section>
     <div class="page-atmosphere" aria-hidden="true"></div>
     <main class="board-shell">
       <header class="hero compact-hero" aria-label="班级信息滑动栏">

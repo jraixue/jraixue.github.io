@@ -9,45 +9,21 @@ const displayLimits = Object.freeze({ schedule: 15, homework: 5, countdowns: 6, 
 // normal source for future updates.
 const embeddedBoard = {
   className: "高一（12）班 · 贯通班",
-  dateLabel: "2026年9月22日 星期二",
-  dailyMessage: "把每一次准备做扎实，把今天能做的认真做好。",
-  updatedAt: "2026-09-22T03:18:06Z",
-  schedule: [
-    { id: "schedule-0", time: "07:35–07:55", subject: "早读", topic: "语文早读" },
-    { id: "schedule-1", time: "08:00–08:40", subject: "第1节", topic: "数学" },
-    { id: "schedule-2", time: "08:55–09:35", subject: "第2节", topic: "英语" },
-    { id: "schedule-break-1", time: "09:40–09:45", subject: "眼保健操", topic: "眼保健操" },
-    { id: "schedule-3", time: "09:50–10:30", subject: "第3节", topic: "历史" },
-    { id: "schedule-break-2", time: "10:30–11:00", subject: "课间操", topic: "课间操" },
-    { id: "schedule-4", time: "11:00–11:40", subject: "第4节", topic: "语文" },
-    { id: "schedule-5", time: "11:50–12:30", subject: "第5节", topic: "语文" },
-    { id: "schedule-noon", time: "12:30–13:50", subject: "午间", topic: "午餐、答疑、自主活动" },
-    { id: "schedule-6", time: "13:50–14:30", subject: "第6节", topic: "化学" },
-    { id: "schedule-break-3", time: "14:40–14:45", subject: "眼保健操", topic: "眼保健操" },
-    { id: "schedule-7", time: "14:45–15:25", subject: "第7节", topic: "体育" },
-    { id: "schedule-8", time: "15:40–16:20", subject: "第8节", topic: "课后服务" },
-    { id: "schedule-9", time: "16:30–17:30", subject: "第9节", topic: "课后服务" },
-    { id: "schedule-10", time: "18:30–20:30", subject: "第10节", topic: "晚自习" }
-  ],
+  dateLabel: "2026年9月26日 星期六 · 中秋假期",
+  dailyMessage: "中秋安康，愿假期有团圆、有休息，也有新的能量。",
+  updatedAt: "2026-09-26T03:00:00Z",
+  schedule: [],
   homework: [
     { id: "homework-1", title: "学生情况登记表", completed: 0, total: 49, deadline: "8月19日" },
     { id: "homework-2", title: "军训回执", completed: 0, total: 49, deadline: "8月19日" },
     { id: "homework-3", title: "肺结核筛查问卷", completed: 0, total: 49, deadline: "8月19日" }
   ],
   countdowns: [
-    { id: "countdown-1", title: "入学教育第一天", date: "2026-08-19" },
-    { id: "countdown-2", title: "军训", date: "2026-08-23" },
-    { id: "countdown-3", title: "正式开学", date: "2026-09-01" },
-    { id: "countdown-4", title: "第一次物理小测（示例）", date: "2026-09-11" },
-    { id: "countdown-5", title: "返校", date: "2026-08-31" },
-    { id: "countdown-6", title: "开学典礼", date: "2026-08-31" },
-    { id: "countdown-7", title: "运动会", date: "2026-09-24" }
+    { id: "countdown-mid-autumn", title: "中秋假期", date: "2026-09-26" }
   ],
   notices: [
-    { id: "notice-1", title: "9月21日（周一）放学时间：17:00", detail: "综合分类课结束后放学。", level: "important" },
-    { id: "notice-2", title: "9月22日（周二）放学时间：16:40", detail: "教学处讲座 15:40—16:40，讲座结束后放学。", level: "important" },
-    { id: "notice-3", title: "9月23日（周三）放学时间：17:10", detail: "16:30—17:10 语文阅读课；17:10—17:40 大扫除。", level: "important" },
-    { id: "notice-4", title: "9月24日（周四）运动会", detail: "运动会当天安排以班主任最新通知为准。", level: "normal" }
+    { id: "notice-holiday-1", title: "9月26日（周六）中秋假期", detail: "今日不上课，祝同学们中秋安康。", level: "important" },
+    { id: "notice-holiday-2", title: "9月27日（周日）中秋假期", detail: "明日继续放假，返校安排以班主任后续通知为准。", level: "normal" }
   ]
 };
 
