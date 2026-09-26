@@ -14,9 +14,11 @@ const embeddedBoard = {
   updatedAt: "2026-09-26T03:00:00Z",
   schedule: [],
   homework: [
-    { id: "homework-1", title: "学生情况登记表", completed: 0, total: 49, deadline: "8月19日" },
-    { id: "homework-2", title: "军训回执", completed: 0, total: 49, deadline: "8月19日" },
-    { id: "homework-3", title: "肺结核筛查问卷", completed: 0, total: 49, deadline: "8月19日" }
+    { id: "homework-0925", title: "9月25—27日学案§2-3-1 匀变速直线运动的位移与时间", completed: 14, total: 49, deadline: "9月28日 08:00" },
+    { id: "homework-0923", title: "9月23—24日学案§2-2 匀变速直线运动的速度与时间的关系", completed: 15, total: 49, deadline: "9月28日 08:00" },
+    { id: "homework-0921", title: "9月21日物理学案§2.1 实验：探究小车速度随时间变化规律", completed: 47, total: 49, deadline: "9月22日 08:00" },
+    { id: "homework-0918", title: "9月18日作业（学探诊§2.2的2—5；§2.3的2—5）", completed: 48, total: 49, deadline: "9月19日 08:00" },
+    { id: "homework-0917", title: "9月17日物理作业", completed: 47, total: 49, deadline: "9月18日 08:00" }
   ],
   countdowns: [
     { id: "countdown-mid-autumn", title: "中秋假期", date: "2026-09-26" }
