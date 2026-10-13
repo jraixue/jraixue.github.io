@@ -9,10 +9,25 @@ const displayLimits = Object.freeze({ schedule: 15, homework: 5, countdowns: 6, 
 // normal source for future updates.
 const embeddedBoard = {
   className: "高一（12）班 · 贯通班",
-  dateLabel: "2026年9月26日 星期六 · 中秋假期",
-  dailyMessage: "中秋安康，愿假期有团圆、有休息，也有新的能量。",
-  updatedAt: "2026-09-26T03:00:00Z",
-  schedule: [],
+  dateLabel: "2026年10月14日 星期三",
+  dailyMessage: "把每一节课认真上好，让好奇心带我们走得更远。",
+  updatedAt: "2026-10-13T07:02:00Z",
+  schedule: [
+    { id: "schedule-1014-0", time: "07:35–07:55", subject: "英语早读", topic: "早读" },
+    { id: "schedule-1014-1", time: "08:00–08:40", subject: "数学", topic: "第1节" },
+    { id: "schedule-1014-2", time: "08:55–09:35", subject: "生物", topic: "第2节" },
+    { id: "schedule-1014-eye-am", time: "09:40–09:45", subject: "眼保健操", topic: "" },
+    { id: "schedule-1014-3", time: "09:50–10:30", subject: "化学", topic: "第3节" },
+    { id: "schedule-1014-break", time: "10:30–11:00", subject: "课间操", topic: "" },
+    { id: "schedule-1014-4", time: "11:00–11:40", subject: "政治", topic: "第4节" },
+    { id: "schedule-1014-5", time: "11:50–12:30", subject: "英语", topic: "第5节" },
+    { id: "schedule-1014-lunch", time: "12:30–13:50", subject: "午间安排", topic: "午餐、答疑、自主活动" },
+    { id: "schedule-1014-6", time: "13:50–14:30", subject: "体育", topic: "第6节" },
+    { id: "schedule-1014-eye-pm", time: "14:40–14:45", subject: "眼保健操", topic: "" },
+    { id: "schedule-1014-7", time: "14:45–15:25", subject: "语文", topic: "第7节" },
+    { id: "schedule-1014-8", time: "15:40–16:20", subject: "地理", topic: "第8节" },
+    { id: "schedule-1014-9", time: "16:30–17:10", subject: "语文阅读", topic: "阅读课后放学" }
+  ],
   homework: [
     { id: "homework-0925", title: "9月25—27日学案§2-3-1 匀变速直线运动的位移与时间", completed: 14, total: 49, deadline: "9月28日 08:00" },
     { id: "homework-0923", title: "9月23—24日学案§2-2 匀变速直线运动的速度与时间的关系", completed: 15, total: 49, deadline: "9月28日 08:00" },
@@ -21,11 +36,16 @@ const embeddedBoard = {
     { id: "homework-0917", title: "9月17日物理作业", completed: 47, total: 49, deadline: "9月18日 08:00" }
   ],
   countdowns: [
-    { id: "countdown-mid-autumn", title: "中秋假期", date: "2026-09-26" }
+    { id: "countdown-math-1013", title: "数学测练", date: "2026-10-13" },
+    { id: "countdown-biology-1015", title: "生物测练", date: "2026-10-15" },
+    { id: "countdown-volleyball-1015", title: "排球队员确认", date: "2026-10-15" },
+    { id: "countdown-board-1020", title: "板报评比完成", date: "2026-10-20" },
+    { id: "countdown-test-1026", title: "测练", date: "2026-10-26" },
+    { id: "countdown-physics-1027", title: "物理测练", date: "2026-10-27" }
   ],
   notices: [
-    { id: "notice-holiday-1", title: "9月26日（周六）中秋假期", detail: "今日不上课，祝同学们中秋安康。", level: "important" },
-    { id: "notice-holiday-2", title: "9月27日（周日）中秋假期", detail: "明日继续放假，返校安排以班主任后续通知为准。", level: "normal" }
+    { id: "notice-week-plan-1013", date: "2026-10-13", title: "本周安排｜10月13日—16日", detail: "10月13日（周二）：数学测练，17:20放学。\n10月14日（周三）：语文阅读课，17:10放学。\n10月15日（周四）：生物测练，17:30放学。\n10月16日（周五）：17:00大扫除，17:40检查卫生。", level: "important" },
+    { id: "notice-class-tasks-1013", date: "2026-10-13", title: "近期班级事项", detail: "排球班赛参赛队员请于10月15日前确定；板报评比请于10月20日前完成。", level: "normal" }
   ]
 };
 
@@ -428,7 +448,7 @@ async function refreshBoard() {
       }
     };
     if (window.location.hostname === "jraixue.github.io") {
-      payload = await loadJson("./class-board.json?v=20260920-homework2");
+      payload = await loadJson("./class-board.json?v=20261013-board");
       renderBoard(payload);
     } else {
       try {
@@ -436,7 +456,7 @@ async function refreshBoard() {
         if (!payload || !payload.board) throw new Error("班级数据结构不正确");
         renderBoard(payload.board);
       } catch {
-        payload = await loadJson("./class-board.json?v=20260920-homework2");
+        payload = await loadJson("./class-board.json?v=20261013-board");
         renderBoard(payload);
       }
     }
@@ -459,69 +479,3 @@ initializeHeadlineSlider();
 initializeSeatMap();
 refreshBoard();
 window.setInterval(refreshBoard, refreshIntervalMs);
-
-// Public demo login gate. It is deliberately client-only and must never be used for real student data.
-(function initializePublicDemoAuth() {
-  const auth = document.getElementById("public-auth");
-  const passwordGate = document.getElementById("public-password");
-  const studentDemo = document.getElementById("student-demo");
-  const board = document.querySelector(".board-shell");
-  const roleButtons = [...document.querySelectorAll("[data-auth-role]")];
-  const username = document.getElementById("public-auth-username");
-  const password = document.getElementById("public-auth-password");
-  const error = document.getElementById("public-auth-error");
-  const submit = document.getElementById("public-auth-submit");
-  const newPassword = document.getElementById("public-new-password");
-  const confirmPassword = document.getElementById("public-confirm-password");
-  const passwordError = document.getElementById("public-password-error");
-  const passwordSubmit = document.getElementById("public-password-submit");
-  if (!auth || !passwordGate || !studentDemo || !board || !username || !password || !error || !submit || !newPassword || !confirmPassword || !passwordError || !passwordSubmit) return;
-  let role = "student";
-  let loggedInRole = "student";
-  roleButtons.forEach((button) => button.addEventListener("click", () => {
-    role = button.dataset.authRole || "student";
-    roleButtons.forEach((item) => item.classList.toggle("active", item === button));
-    username.placeholder = role === "teacher" ? "金然" : "演示学生01";
-    submit.textContent = role === "teacher" ? "登录教师演示端" : "登录学生演示端";
-    error.textContent = "";
-  }));
-  submit.addEventListener("click", () => {
-    const expectedName = role === "teacher" ? "金然" : "演示学生01";
-    if (username.value.trim() !== expectedName || password.value !== "123456") {
-      error.textContent = `演示账号不匹配：${expectedName} / 初始密码 123456`;
-      return;
-    }
-    loggedInRole = role;
-    auth.hidden = true;
-    passwordGate.hidden = false;
-    newPassword.focus();
-  });
-  passwordSubmit.addEventListener("click", () => {
-    if (!/^(?=.*[A-Za-z])(?=.*\d).{6,}$/.test(newPassword.value)) {
-      passwordError.textContent = "新密码至少 6 位，并同时包含字母和数字。";
-      return;
-    }
-    if (newPassword.value !== confirmPassword.value) {
-      passwordError.textContent = "两次输入的新密码不一致。";
-      return;
-    }
-    passwordGate.hidden = true;
-    if (loggedInRole === "student") {
-      board.hidden = true;
-      studentDemo.hidden = false;
-      const welcome = document.getElementById("student-demo-welcome");
-      if (welcome) welcome.textContent = `欢迎，${username.value.trim()}。这里只展示当前账号本人的信息。`;
-    } else {
-      board.hidden = false;
-    }
-  });
-  document.querySelectorAll("[data-public-logout]").forEach((button) => button.addEventListener("click", () => {
-    studentDemo.hidden = true;
-    board.hidden = false;
-    auth.hidden = false;
-    username.value = "";
-    password.value = "";
-    newPassword.value = "";
-    confirmPassword.value = "";
-  }));
-})();
