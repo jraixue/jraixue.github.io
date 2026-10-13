@@ -1,9 +1,24 @@
 {
   "className": "高一（12）班 · 贯通班",
-  "dateLabel": "2026年9月26日 星期六 · 中秋假期",
-  "dailyMessage": "中秋安康，愿假期有团圆、有休息，也有新的能量。",
-  "updatedAt": "2026-09-26T03:00:00Z",
-  "schedule": [],
+  "dateLabel": "2026年10月14日 星期三",
+  "dailyMessage": "把每一节课认真上好，让好奇心带我们走得更远。",
+  "updatedAt": "2026-10-13T07:02:00Z",
+  "schedule": [
+    { "id": "schedule-1014-0", "time": "07:35–07:55", "subject": "英语早读", "topic": "早读", "room": "" },
+    { "id": "schedule-1014-1", "time": "08:00–08:40", "subject": "数学", "topic": "第1节", "room": "" },
+    { "id": "schedule-1014-2", "time": "08:55–09:35", "subject": "生物", "topic": "第2节", "room": "" },
+    { "id": "schedule-1014-eye-am", "time": "09:40–09:45", "subject": "眼保健操", "topic": "", "room": "" },
+    { "id": "schedule-1014-3", "time": "09:50–10:30", "subject": "化学", "topic": "第3节", "room": "" },
+    { "id": "schedule-1014-break", "time": "10:30–11:00", "subject": "课间操", "topic": "", "room": "" },
+    { "id": "schedule-1014-4", "time": "11:00–11:40", "subject": "政治", "topic": "第4节", "room": "" },
+    { "id": "schedule-1014-5", "time": "11:50–12:30", "subject": "英语", "topic": "第5节", "room": "" },
+    { "id": "schedule-1014-lunch", "time": "12:30–13:50", "subject": "午间安排", "topic": "午餐、答疑、自主活动", "room": "" },
+    { "id": "schedule-1014-6", "time": "13:50–14:30", "subject": "体育", "topic": "第6节", "room": "" },
+    { "id": "schedule-1014-eye-pm", "time": "14:40–14:45", "subject": "眼保健操", "topic": "", "room": "" },
+    { "id": "schedule-1014-7", "time": "14:45–15:25", "subject": "语文", "topic": "第7节", "room": "" },
+    { "id": "schedule-1014-8", "time": "15:40–16:20", "subject": "地理", "topic": "第8节", "room": "" },
+    { "id": "schedule-1014-9", "time": "16:30–17:10", "subject": "语文阅读", "topic": "阅读课后放学", "room": "" }
+  ],
   "homework": [
     { "id": "homework-0925", "title": "9月25—27日学案§2-3-1 匀变速直线运动的位移与时间", "completed": 14, "total": 49, "deadline": "9月28日 08:00" },
     { "id": "homework-0923", "title": "9月23—24日学案§2-2 匀变速直线运动的速度与时间的关系", "completed": 15, "total": 49, "deadline": "9月28日 08:00" },
@@ -12,11 +27,16 @@
     { "id": "homework-0917", "title": "9月17日物理作业", "completed": 47, "total": 49, "deadline": "9月18日 08:00" }
   ],
   "countdowns": [
-    { "id": "countdown-mid-autumn", "title": "中秋假期", "date": "2026-09-26" }
+    { "id": "countdown-math-1013", "title": "数学测练", "date": "2026-10-13" },
+    { "id": "countdown-biology-1015", "title": "生物测练", "date": "2026-10-15" },
+    { "id": "countdown-volleyball-1015", "title": "排球队员确认", "date": "2026-10-15" },
+    { "id": "countdown-board-1020", "title": "板报评比完成", "date": "2026-10-20" },
+    { "id": "countdown-test-1026", "title": "测练", "date": "2026-10-26" },
+    { "id": "countdown-physics-1027", "title": "物理测练", "date": "2026-10-27" }
   ],
   "notices": [
-    { "id": "notice-holiday-1", "title": "9月26日（周六）中秋假期", "detail": "今日不上课，祝同学们中秋安康。", "level": "important" },
-    { "id": "notice-holiday-2", "title": "9月27日（周日）中秋假期", "detail": "明日继续放假，返校安排以班主任后续通知为准。", "level": "normal" }
+    { "id": "notice-week-plan-1013", "date": "2026-10-13", "title": "本周安排｜10月13日—16日", "detail": "10月13日（周二）：数学测练，17:20放学。\n10月14日（周三）：语文阅读课，17:10放学。\n10月15日（周四）：生物测练，17:30放学。\n10月16日（周五）：17:00大扫除，17:40检查卫生。", "level": "important" },
+    { "id": "notice-class-tasks-1013", "date": "2026-10-13", "title": "近期班级事项", "detail": "排球班赛参赛队员请于10月15日前确定；板报评比请于10月20日前完成。", "level": "normal" }
   ],
   "activityPlans": {
     "2026-08-19": {
