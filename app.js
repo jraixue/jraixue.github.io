@@ -10,6 +10,7 @@ const displayLimits = Object.freeze({ schedule: 15, homework: 5, countdowns: 6, 
 const embeddedBoard = {
   className: "高一（12）班 · 贯通班",
   dateLabel: "2026年10月14日 星期三",
+  scheduleDate: "2026-10-14",
   dailyMessage: "把每一节课认真上好，让好奇心带我们走得更远。",
   updatedAt: "2026-10-13T07:02:00Z",
   schedule: [
@@ -279,11 +280,13 @@ function replaceChildren(container, children, emptyText) {
   container.replaceChildren(...children);
 }
 
-function renderSchedule(schedule, { activity = false } = {}) {
+function renderSchedule(schedule, { activity = false, scheduleDate = null } = {}) {
   const now = minutesSinceMidnight();
+  const filterPastLessons = !scheduleDate || scheduleDate === localDateKey();
   const visibleSchedule = activity
     ? schedule
     : schedule.filter((lesson) => {
+        if (!filterPastLessons) return true;
         const range = parseTimeRange(lesson.time);
         return !range || range.end > now;
       }).slice(0, displayLimits.schedule);
@@ -423,7 +426,7 @@ function renderBoard(board) {
     elements.dateLabel.textContent = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 · ${activity.label || "入学教育"}`;
     renderSchedule(activity.items.map((item) => ({ ...item, date: activity.date })), { activity: true });
   } else {
-    renderSchedule(board.schedule);
+    renderSchedule(board.schedule, { scheduleDate: board.scheduleDate });
   }
   renderHomework(board.homework);
   renderCountdowns(board.countdowns);
